@@ -1,0 +1,94 @@
+/* Nola ikertu — rules of this project only; theme.css and site.css are the family kit, copied unchanged.
+   Identity: an ink indigo as the primary (the kit names its primary token --teal for history) and a lamp amber as the
+   accent: the notebook and the magnifying glass. Distinct from berdeguneak's green, so the two sites never blur. */
+:root {
+  --teal: #34437f; --teal-soft: #5262a0; --amber: #a8641a;
+  --ok: #2e6b5e; --warn: #8a6a00; --bad: #9a3f3f;
+  --ink-tint: #eef0f8; --lamp-tint: #fbf3e6;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --teal: #a9b5ec; --teal-soft: #c0c9f2; --amber: #e8b46e;
+    --ok: #7fc4b3; --warn: #e3c15a; --bad: #e08a8a;
+    --ink-tint: #191c2b; --lamp-tint: #2a2116;
+  }
+}
+
+/* Shown only in a sibling edition (tools/sibling.py unwraps it). */
+.sibling-only { display: none !important; }
+
+/* Labels and chips. */
+.lbl { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 3px; }
+.chip { display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 1px 7px; border-radius: 2px; border: 1px solid currentColor; line-height: 1.6; }
+.chip-opt { color: var(--amber); }
+a.fx { display: inline-block; font-family: var(--mono); font-size: 12.5px; font-weight: 600; padding: 0 6px; border: 1px solid var(--line); border-radius: 2px; margin-right: 4px; text-decoration: none; }
+a.fx:hover { border-color: var(--teal); }
+
+/* A phase page: the strip under the title and the pager (filters/phase.lua). */
+.phase-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 24px; border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 12px 0; margin: 10px 0 24px; font-size: 14.5px; }
+.phase-strip .goal { grid-column: 1 / -1; font-family: var(--serif); font-size: 16px; }
+.text-pager { display: flex; justify-content: space-between; gap: 12px; font-family: var(--sans); font-size: 14.5px; margin: 30px 0 20px; border-top: 1px solid var(--line-soft); padding-top: 12px; }
+
+/* The six parts of a phase: the example and the traps stand out. */
+.example, .callout-example { border-left: 3px solid var(--teal); background: var(--ink-tint); padding: 10px 18px 4px; margin: 14px 0 20px; }
+.why { border-left: 3px solid var(--amber); background: var(--lamp-tint); padding: 10px 18px 4px; margin: 14px 0 20px; }
+.trap { color: var(--bad); font-weight: 600; }
+.docs-main ul.task-list { list-style: none; padding-left: 4px; }
+.docs-main ul.task-list li { margin: 6px 0; }
+.docs-main ul.task-list input[type="checkbox"] { margin-right: 8px; transform: scale(1.15); }
+
+/* Home: the map of the ten phases. */
+.phase-map { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 12px 0 8px; counter-reset: ph; }
+.phase-card { border: 1px solid var(--line-soft); border-top: 3px solid var(--teal); padding: 12px 14px 10px; display: flex; flex-direction: column; gap: 6px; background: var(--paper); }
+.phase-card:hover { border-color: var(--teal); }
+.phase-card .num { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); display: flex; gap: 8px; align-items: center; }
+.phase-card h3 { font-family: var(--serif); font-size: 17px; margin: 0; line-height: 1.3; }
+.phase-card h3 a { color: var(--ink); text-decoration: none; }
+.phase-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; flex: 1; }
+
+/* Worksheets: a name/date line, and tables with room to write. */
+.sheet-id { display: flex; gap: 24px; flex-wrap: wrap; font-family: var(--sans); font-size: 14px; margin: 6px 0 18px; }
+.sheet-id span { display: flex; gap: 6px; align-items: flex-end; flex: 1 1 180px; }
+.sheet-id i { flex: 1; border-bottom: 1px solid var(--ink-faint); min-width: 90px; height: 1.2em; }
+.write { border: 1px solid var(--line); min-height: 4.5em; margin: 6px 0 16px; }
+.write.tall { min-height: 9em; }
+.lines { display: block; height: 1.9em; border-bottom: 1px solid var(--line); }
+.docs-main table.sheet { display: table; width: 100%; table-layout: auto; }
+.docs-main table.sheet td { height: 2.4em; min-width: 4em; border-bottom: 1px solid var(--line); }
+.docs-main table.sheet td:first-child:not(:empty) { width: 34%; color: var(--ink-soft); }
+.docs-main table.sheet thead th:empty { padding: 0; }
+
+/* Brief, decisions, log. */
+.verbatim { border-left: 3px solid var(--teal); background: var(--tint); padding: 12px 18px; margin: 14px 0 22px; font-family: var(--serif); font-size: 15.5px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.verbatim pre.vtext { font: inherit; margin: 0; padding: 0; border: 0; background: none; white-space: pre-wrap; overflow-wrap: anywhere; }
+.verbatim .who { display: block; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; white-space: normal; }
+.dec { border: 1px solid var(--line-soft); border-left: 4px solid var(--amber); padding: 12px 18px 8px; margin: 16px 0; background: var(--paper); }
+.dec h3 { margin: 6px 0 8px; font-size: 18px; line-height: 1.3; }
+.dec p { margin: 0 0 8px; font-size: 15px; }
+.status-answered { color: var(--ok); } .status-assumed { color: var(--warn); }
+.log-entry { border-top: 1px solid var(--line); padding: 12px 0 4px; }
+.log-entry .when { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+
+/* The reading column. */
+.docs-main table { display: block; width: max-content; max-width: 100%; overflow-x: auto; }
+.docs-main .quarto-title-block, .docs-main #title-block-header { display: block !important; max-width: none; padding: 0; margin: 0 0 8px; }
+.docs-main .quarto-title-block .quarto-title-meta, .docs-main .quarto-title-block .abstract { display: none; }
+.docs-main a, .docs-main p, .docs-main li { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .docs-main { overflow-x: hidden; min-width: 0; }
+  .docs-nav { position: static; top: auto; max-height: none; overflow: visible; }
+  .docs-nav .docs-fold, .docs-toc .docs-fold { display: none; }
+  .docs.nav-folded, .docs.toc-folded, .docs.nav-folded.toc-folded { grid-template-columns: 1fr; }
+}
+
+/* Printing: the reading column only, black on white; a worksheet fills its page. */
+@media print {
+  .topline, .site-head, .site-foot, .docs-nav, .docs-toc, .text-pager, nav.breadcrumbs, .quarto-title-breadcrumbs { display: none !important; }
+  .docs { display: block !important; }
+  .docs-main { max-width: none !important; }
+  body { background: #fff !important; color: #000 !important; font-size: 11.5pt; }
+  .docs-main table { display: table; width: 100%; }
+  .docs-main table.sheet td { height: 2.8em; }
+  h2, h3 { break-after: avoid; } .example, .why, table { break-inside: avoid; }
+  a { color: inherit !important; text-decoration: none; }
+}
